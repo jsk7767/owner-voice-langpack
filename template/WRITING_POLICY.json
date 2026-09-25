@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "pack_id": "owner-voice-template",
+  "rules": {
+    "banned": [],
+    "ending_patterns": [],
+    "blog_numbered_list_forbidden": false,
+    "manual_checks": ["facts", "experience", "photo_rights", "publication_authority"]
+  },
+  "preferences": {"thread_chars": null, "voice_notes": []},
+  "composition": {"fixed_sequence": null, "faq_count": null, "photo_count": null, "thread_count": null, "last_shortest": false, "keyword_min": null},
+  "channels": {
+    "blog": {"native_place_card_required": false},
+    "thread": {"max_chars": 500, "limit_status": "legacy_unverified", "limit_source": "existing_checker", "checked_at": null, "photos_allowed": true}
+  },
+  "repetition": {
+    "pair_max": 10.0, "rep_max": 3, "echo_n": 12, "owner_echo_command_n": null,
+    "sentence_whitelist": [], "phrase_whitelist": [],
+    "composition_window": 5, "composition_warn_at": 2
+  }
+}

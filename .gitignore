@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+# 채운 언어팩과 참고 글은 올리지 않습니다
+my-pack/
+*.private.md
+참고글*.txt
