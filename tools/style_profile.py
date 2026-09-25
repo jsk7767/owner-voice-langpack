@@ -3,6 +3,7 @@
 사용법:
     python tools/style_profile.py 참고글.txt                       # 참고 글 문체 분석
     python tools/style_profile.py 참고글.txt --compare 내초안.txt  # 초안과 비교 + 베낀 구간 검사
+    python tools/style_profile.py 참고글.txt --compare 내초안.txt --keep-draft-ending  # 내 말끝은 유지
     python tools/style_profile.py 참고글.txt --json                # 결과를 JSON으로
 
 입력: 글과 글 사이를 `---` 한 줄로 구분한 텍스트 파일. 구분선이 없으면 파일 하나를 글 한 편으로 봅니다.
@@ -156,7 +157,7 @@ HINTS = {
 TOLERANCE = {"문장 평균 길이": 0.2, "20자 이하 문장 비율(%)": 0.3, "한 줄에 한 문장 비율(%)": 0.25, "질문 문장 비율(%)": 0.5, "느낌표 편당": 0.5}
 
 
-def compare(ref: dict[str, object], draft: dict[str, object]) -> list[str]:
+def compare(ref: dict[str, object], draft: dict[str, object], keep_ending: bool = False) -> list[str]:
     notes: list[str] = []
     for key, tolerance in TOLERANCE.items():
         a, b = float(ref[key]), float(draft[key])  # type: ignore[arg-type]
@@ -166,12 +167,12 @@ def compare(ref: dict[str, object], draft: dict[str, object]) -> list[str]:
             notes.append(f"- {key}: 참고 {a} / 초안 {b} → {HINTS[key][0] if b > a else HINTS[key][1]} 이번에는 {step} 정도까지만 옮겨 보세요.")
     ref_end = ref["말투(문장 끝) 비율(%)"]
     dra_end = draft["말투(문장 끝) 비율(%)"]
-    if isinstance(ref_end, dict) and isinstance(dra_end, dict) and ref_end and dra_end:
+    if not keep_ending and isinstance(ref_end, dict) and isinstance(dra_end, dict) and ref_end and dra_end:
         top_ref, top_dra = next(iter(ref_end)), next(iter(dra_end))
         if top_ref != top_dra:
             notes.append(f"- 말투: 참고 글은 주로 '{top_ref}', 초안은 주로 '{top_dra}' → 문장 끝을 '{top_ref}'로 맞춰 보세요.")
     if notes:
-        notes.append("- 한 번에 다 맞추지 말고 차이의 절반만 고친 뒤 다시 비교하세요. 문체를 고친 뒤에는 새로 생긴 사실이 없는지도 확인하세요.")
+        notes.append("- 한 번에 다 맞추지 말고 차이의 절반만 고친 뒤 다시 비교하세요. 다시 비교했을 때 새로 생긴 경고는 한꺼번에 크게 고치지 마세요. 문체를 고친 뒤에는 새로 생긴 사실이 없는지도 확인하세요.")
     return notes or ["- 주요 지표가 참고 글과 비슷한 범위입니다."]
 
 
@@ -196,6 +197,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("files", nargs="+", type=Path, help="참고 글 파일")
     parser.add_argument("--compare", type=Path, help="비교할 내 초안 파일")
     parser.add_argument("--copy-chars", type=int, default=DEFAULT_COPY_CHARS, help="베낀 구간으로 볼 최소 글자 수(공백 제외)")
+    parser.add_argument("--keep-draft-ending", action="store_true", help="내 말끝(예: 해요체)을 유지하고 말끝 변경은 제안하지 않음")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args(argv)
     try:
@@ -216,7 +218,7 @@ def main(argv: list[str] | None = None) -> int:
             print("\n※ 관찰값입니다. 참고 글의 문장과 그 사람의 경험은 옮기지 마세요.")
         return 0
     draft_profile = profile(draft)
-    notes = compare(ref_profile, draft_profile)
+    notes = compare(ref_profile, draft_profile, args.keep_draft_ending)
     copies = copied_spans("\n".join(reference), "\n".join(draft), args.copy_chars)
     if args.json:
         print(json.dumps({"참고": ref_profile, "초안": draft_profile, "조정 제안": notes, "겹치는 구간": copies}, ensure_ascii=False, indent=1))

@@ -239,6 +239,7 @@ AI 대화창만으로도 할 수 있고, 파이썬을 쓸 수 있다면 도구�
 ```bash
 python tools/style_profile.py 참고글.txt                       # ① 문체 카드용 수치
 python tools/style_profile.py 참고글.txt --compare 내초안.txt  # ③ 비교 + 베낀 구간 검사
+python tools/style_profile.py 참고글.txt --compare 내초안.txt --keep-draft-ending  # 내 말끝(해요체 등)은 유지
 ```
 
 비교 결과는 이렇게 나옵니다.
