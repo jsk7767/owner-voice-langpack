@@ -29,7 +29,7 @@ PATTERNS = {
     "'~인 것이다' 단정": r"것이다[.\n]",
     "세 가지 나란히 (A고, B고, C고)": r"[가-힣]{2,}고,\s[가-힣]{2,}고,\s[가-힣]{2,}고",
 }
-_SENTENCE = re.compile(r"(?<=[.?!])\s+|\n+")
+_SENTENCE = re.compile(r"(?<=[.?!])\s+")
 _TIME = re.compile(r"(오늘|어제|아까|방금|그날|새벽|아침|점심|저녁|밤|요즘)")
 _EMOJI = re.compile("[\U0001F300-\U0001FAFF\u2600-\u27BF]")
 DEFAULT_COPY_CHARS = 12
@@ -41,7 +41,12 @@ def split_posts(text: str) -> list[str]:
 
 
 def sentences_of(post: str) -> list[str]:
-    return [s.strip() for s in _SENTENCE.split(post) if len(s.strip()) > 1]
+    paragraphs = re.split(r"\n\s*\n", post.replace("\r\n", "\n").replace("\r", "\n"))
+    sentences: list[str] = []
+    for paragraph in paragraphs:
+        normalized = re.sub(r"[ \t]*\n[ \t]*", " ", paragraph.strip())
+        sentences.extend(s.strip() for s in _SENTENCE.split(normalized) if len(s.strip()) > 1)
+    return sentences
 
 
 def ending(sentence: str) -> str:
