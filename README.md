@@ -5,6 +5,19 @@
 > 설치하는 앱이 아닙니다. AI 대화창(ChatGPT, Claude 등)에 붙여넣어 쓰는 문서 묶음입니다.
 > 검색 노출이나 매출을 보장하지 않습니다.
 
+**기존 언어팩을 이미 쓰고 있다면:** [가게 사진팩](photo-pack/README.md)을 추가하세요.
+사진 폴더에서 실제 사진을 읽고 문맥에 맞는 선택·삽입 위치·업로드 확인을 안내하는 별도 묶음입니다.
+
+| 하고 싶은 일 | 시작할 곳 |
+|---|---|
+| 내 가게 언어팩을 처음 만들기 | [빠른 시작](QUICK_START.md) |
+| 기존 언어팩에 사진 선택·배치 기능 보강하기 | [가게 사진팩 사용 안내](photo-pack/README.md) |
+| AI에게 사진 지침 바로 전달하기 | [PHOTO_PACK.md](photo-pack/PHOTO_PACK.md) |
+
+사진팩은 `photo-pack/photos`에 가게 사진을 넣어 사용합니다.
+[ZIP 다운로드](https://github.com/jsk7767/owner-voice-langpack/archive/refs/heads/main.zip) 후 `photo-pack` 폴더만 따로 전달해도 됩니다.
+제작: **더장사 아카데미 승기 (전승기)**.
+
 ---
 
 ## 목차

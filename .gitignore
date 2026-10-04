@@ -6,3 +6,9 @@ __pycache__/
 my-pack/
 *.private.md
 참고글*.txt
+# 사진팩의 실제 매장 사진과 AI 작업 기록은 비공개 로컬 자료입니다
+photo-pack/photos/*
+!photo-pack/photos/README.md
+photo-pack/**/publish_photos/
+photo-pack/**/PHOTO_INDEX.md
+photo-pack/**/PHOTO_USAGE.md
