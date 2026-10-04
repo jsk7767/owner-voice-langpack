@@ -5,6 +5,42 @@
 > 설치하는 앱이 아닙니다. AI 대화창(ChatGPT, Claude 등)에 붙여넣어 쓰는 문서 묶음입니다.
 > 검색 노출이나 매출을 보장하지 않습니다.
 
+## 주소 하나로 시작하기
+
+웹페이지를 읽을 수 있는 AI 대화창에 아래 주소를 보내세요.
+AI가 시작 안내를 읽고 현재 자료를 확인한 뒤 필요한 것만 요청하도록 구성했습니다.
+
+```text
+https://github.com/jsk7767/owner-voice-langpack
+```
+
+**기존 언어팩에 사진만 추가하려면 이 주소를 보내세요.**
+
+```text
+https://github.com/jsk7767/owner-voice-langpack/tree/main/photo-pack
+```
+
+AI가 링크를 열지 못하면 [ZIP](https://github.com/jsk7767/owner-voice-langpack/archive/refs/heads/main.zip)을 받아
+사진 작업에는 `photo-pack/PHOTO_PACK.md`를, 언어팩 신규 작성에는 `START.md`와
+`template/00_MASTER.md`, `template/WRITING_POLICY.json`을 첨부하세요.
+링크만으로 작업 의도를 인식하지 않는 AI에는 “이 팩으로 시작해 줘” 한 줄을 덧붙이면 됩니다.
+
+### 이 주소를 받은 AI의 시작 순서
+
+사용자가 이 팩을 쓰려는 맥락에서 주소를 전달했다면 저장소 소개만 요약하고 끝내지 말고 다음 단계로 진행한다.
+사용자가 요약·검토·설명을 명시했다면 그 요청만 수행하며 설정을 시작하지 않는다.
+
+1. 대화와 첨부 자료에서 기존 가게 언어팩, 사진, 글 또는 주제가 있는지 확인한다.
+2. 사진팩 주소이거나 사진 선택·배치 요청이면 [사진 실행 지침](photo-pack/PHOTO_PACK.md)의 **0단계**를 읽고 시작한다.
+3. 루트 주소만 있고 의도가 불명확하면 “기존 언어팩에 사진을 붙일까요, 가게 언어팩부터 만들까요?” 하나만 묻는다.
+4. 신규 언어팩 작성이면 [START.md](START.md)와 템플릿 두 파일을 실제로 읽고, 이미 받은 자료를 재요청하지 않고 부족한 단계부터 진행한다.
+5. 읽기 실패를 숨기지 않는다. 사진 지침 HTML이 열리지 않으면
+   [원문](https://raw.githubusercontent.com/jsk7767/owner-voice-langpack/main/photo-pack/PHOTO_PACK.md)을 시도한다.
+   웹 읽기 자체가 없으면 사용자가 첨부해야 할 파일을 정확히 알려 준다.
+
+이 시작 안내는 AI의 도구·현재 사용자 지시 범위 안에서 적용한다.
+주소 전달만으로 게시 권한이나 로컬 폴더 접근 권한이 생기지는 않는다.
+
 **기존 언어팩을 이미 쓰고 있다면:** [가게 사진팩](photo-pack/README.md)을 추가하세요.
 사진 폴더에서 실제 사진을 읽고 문맥에 맞는 선택·삽입 위치·업로드 확인을 안내하는 별도 묶음입니다.
 
