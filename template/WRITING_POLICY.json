@@ -10,7 +10,18 @@
   "preferences": {"thread_chars": null, "voice_notes": []},
   "composition": {"fixed_sequence": null, "faq_count": null, "photo_count": null, "thread_count": null, "last_shortest": false, "keyword_min": null},
   "channels": {
-    "blog": {"native_place_card_required": false},
+    "blog": {
+      "native_place_card_required": false,
+      "serp_card": {
+        "photos_min": 5,
+        "photos_target_min": 8,
+        "photos_max": 10,
+        "representative_first": true,
+        "distinct_scenes_required": true,
+        "first_paragraph_answers_title_query": true,
+        "photo_count_basis": "observed_not_official_guarantee"
+      }
+    },
     "thread": {"max_chars": 500, "limit_status": "legacy_unverified", "limit_source": "existing_checker", "checked_at": null, "photos_allowed": true}
   },
   "repetition": {
